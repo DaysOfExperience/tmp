@@ -139,7 +139,7 @@ alter table users add assets varchar(100) comment '图片路径' after birthday;
 alter table users modify name varchar(60);  // 修改列类型
 alter table users drop password;
 alter table users rename [to] employee;
-alter table employee change name xingming varchar(60); // 把employee列改为xingming varchar(60)，列名&列类型都改
+alter table employee change name xingming varchar(60); // 把name列改为xingming varchar(60)，列名&列类型都改
 ```
 
 ## 删除表
@@ -147,3 +147,7 @@ alter table employee change name xingming varchar(60); // 把employee列改为xi
 ```mysql
 drop table users;
 ```
+
+---
+
+![image-20231121203109379](https://cdn.jsdelivr.net/gh/DaysOfExperience/blogImage@main/img/image-20231121203109379.png)

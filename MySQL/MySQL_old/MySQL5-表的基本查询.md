@@ -71,11 +71,9 @@ mysql> select * from students;
 4 rows in set (0.00 sec)
 ```
 
-全列插入时，insert into table values ...，此处不需要指定插入哪些列，则全列插入，value_list数量必须和定义表的列的数量及顺序一致 -- 注意，这里在插入的时候，也可以不用指定id（因为id是auto_increment, 当然，这时候就需要明确插入数据到哪些列了)，那么mysql会使用默认的值进行自增。
+nsert into table values ...，此处不指定插入哪些列，则全列插入，value_list数量必须和定义表的列的数量及顺序一致 -- 注意，这里在插入的时候，也可以不用指定id, 因为id是auto_increment, 这时候就需要明确插入数据到哪些列了，那么mysql会使用默认的值进行自增。
 
-<u>也就是说，当某一个字段有默认值或者自增时，如果想插入时省略此行，也必须指定要插入的列名。</u>
-
-指定列插入时，省略的列必须有默认值或者自增，才可以省略，必须指定要插入的列名，value_list必须和指定列数量及顺序一致。
+指定列插入时，省略的列必须有默认值或者自增才可以省略，且必须指定要插入其他的列名，value_list必须和指定列数量及顺序一致。
 
 **插入否则更新**
 
@@ -168,7 +166,7 @@ SELECT
 通常情况下不建议使用 * 进行全列查询
 
 1. 查询的列越多，意味着需要传输的数据量越大
-2. 可能会影响到索引的使用。（索引待后面课程讲解）
+2. 可能会影响到索引的使用。
 
 ```mysql
 mysql> select * from exam_result;
@@ -369,9 +367,9 @@ SELECT NULL <=> NULL, NULL <=> 1, NULL <=> 0;
 
 **结果排序**
 
-> -- ASC 为升序（从小到大） 
+> -- ASC 为升序（从小到大）  ascend  ascending
 >
-> -- DESC 为降序（从大到小） 
+> -- DESC 为降序（从大到小）  descend  descending
 >
 > -- 默认为 ASC升序 
 >
@@ -546,7 +544,7 @@ UPDATE exam_result SET chinese = chinese * 2;
 ## Delete
 
 ```mysql
-DELETE FROM table_name 
+DELETE FROM table_name
 [WHERE ...] [ORDER BY ...] [LIMIT ...]
 ```
 
@@ -608,7 +606,7 @@ delete from exam_result
 TRUNCATE [TABLE] table_name
 ```
 
-注意：这个操作慎用 
+注意：这个操作慎用
 
 1. **只能对整表操作，不能像 DELETE 一样针对部分数据操作;**
 2. 实际上 MySQL 不对数据操作，所以比 DELETE 更快
@@ -795,7 +793,7 @@ mysql> show tables;
 +-----------------+
 3 rows in set (0.00 sec)
 
-mysql> select * from dept;
+mysql> select * from dept;    // 部门表: 部门编号, 部门名, 部门所在地址
 +--------+------------+----------+
 | deptno | dname      | loc      |
 +--------+------------+----------+
@@ -806,7 +804,7 @@ mysql> select * from dept;
 +--------+------------+----------+
 4 rows in set (0.00 sec)
 
-mysql> select * from emp;
+mysql> select * from emp;    // 员工表: 员工编号, 名, 工作, 上司编号, 录用时间, 工资, 奖金, 所在部门编号
 +--------+--------+-----------+------+---------------------+---------+---------+--------+
 | empno  | ename  | job       | mgr  | hiredate            | sal     | comm    | deptno |
 +--------+--------+-----------+------+---------------------+---------+---------+--------+
@@ -827,7 +825,7 @@ mysql> select * from emp;
 +--------+--------+-----------+------+---------------------+---------+---------+--------+
 14 rows in set (0.00 sec)
 
-mysql> select * from salgrade;
+mysql> select * from salgrade;   // 工资等级划分表
 +-------+-------+-------+
 | grade | losal | hisal |
 +-------+-------+-------+

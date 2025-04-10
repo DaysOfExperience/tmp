@@ -8,7 +8,7 @@
 
 ```mysql
 -- 查询工资高于500或岗位为MANAGER的雇员，同时还要满足他们的姓名首字母为大写的J
-mysql> select * from emp 
+mysql> select * from emp
     -> where (sal > 500 or job='MANAGER') and ename like 'J%';
 +--------+-------+---------+------+---------------------+---------+------+--------+
 | empno  | ename | job     | mgr  | hiredate            | sal     | comm | deptno |
@@ -140,6 +140,7 @@ mysql> select job, count(*), avg(sal) from emp group by job;
 ```mysql
 -- 显示雇员名、雇员工资以及所在部门的名字
 -- 因为上面的数据来自EMP和DEPT表，因此要联合查询
+
 mysql> select emp.ename, emp.sal, dept.dname from emp, dept where emp.deptno=dept.deptno;
 +--------+---------+------------+
 | ename  | sal     | dname      |
@@ -340,6 +341,7 @@ mysql> select * from emp where deptno = (select deptno from emp where ename = 'S
 ```mysql
 -- in all any 关键字 --
 -- 查询和10号部门的工作岗位相同的雇员的名字，岗位，工资，部门号，但是不包含10自己的
+
 mysql> select ename, job, sal, deptno from emp where job in (select job from emp where deptno = 10) and deptno != 10;
 +-------+---------+---------+--------+
 | ename | job     | sal     | deptno |
@@ -448,11 +450,9 @@ mysql> select * from emp where (deptno, job) = (select deptno, job from emp wher
 1 row in set (0.00 sec)
 ```
 
-## 在from子句中使用子查询
+### 在from子句中使用子查询
 
-子查询语句出现在from子句中。
-
-这里要用到数据查询的技巧，**把一个子查询当做一个临时表使用。**
+子查询语句出现在from子句中, **把一个子查询当做一个临时表使用。**
 
 ```mysql
 -- 显示每个高于自己部门平均工资的员工的姓名、部门、工资、平均工资
