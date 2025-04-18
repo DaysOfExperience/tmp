@@ -262,7 +262,7 @@ mysql> select distinct math from exam_result;
 +------+
 ```
 
-**where条件查询**
+### where条件查询
 
 **比较运算符**
 
@@ -365,7 +365,7 @@ SELECT NULL <=> NULL, NULL <=> 1, NULL <=> 0;
 
 与NULL进行比较时，用<=>   IS NULL   IS NOT NULL
 
-**结果排序**
+### 结果排序
 
 > -- ASC 为升序（从小到大）  ascend  ascending
 >
@@ -467,7 +467,7 @@ SELECT name, math FROM exam_result
 3 rows in set (0.00 sec)
 ```
 
-**筛选分页结果LIMIT**
+### 筛选分页结果LIMIT
 
 ```mysql
 -- 起始下标为 0

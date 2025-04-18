@@ -659,7 +659,7 @@ MySQL有哪些锁?  对表结构修改会加什么锁?
 - 为什么需要undo log?
 
   undo log 作用1: 实现事务回滚, 保障事务的原子性, 事务出现错误或用户执行rollback语句时利用undo log中的历史数据将数据恢复到事务开始之前的状态。
-  undo log 作用2: 配合read view 实现MVCC(多版本并发控制) (从而控制并发事务访问同一个记录时的行为
+  undo log 作用2: 配合read view 实现MVCC(多版本并发控制) (读写并发无锁化(快照读)
   对于读提交 和 可重复读隔离级别, 它们的快照读（普通 select 语句）是通过 Read View + undo log 来实现的
 
   > 具体undo log内的日志格式以及内容暂略... trx_id 和 roll_pointer需要知道, 更新操作一定是记录版本链的, 其他暂略
@@ -727,7 +727,6 @@ MySQL有哪些锁?  对表结构修改会加什么锁?
   > sync_binlog 参数控制数据库的 binlog 刷到磁盘上的频率: 0 1 N, 依旧是用性能换取数据安全性
 
 - 小结: update语句的执行过程
-  
   
 - 两阶段提交
 

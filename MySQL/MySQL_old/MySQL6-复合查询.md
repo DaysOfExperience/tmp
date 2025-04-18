@@ -162,26 +162,6 @@ mysql> select emp.ename, emp.sal, dept.dname from emp, dept where emp.deptno=dep
 +--------+---------+------------+
 14 rows in set (0.00 sec)
 -- 显示部门号为10的部门名，员工名和工资
-mysql> select dname, ename, sal from emp,dept where emp.deptno = dept.deptno;
-+------------+--------+---------+
-| dname      | ename  | sal     |
-+------------+--------+---------+
-| RESEARCH   | SMITH  |  800.00 |
-| SALES      | ALLEN  | 1600.00 |
-| SALES      | WARD   | 1250.00 |
-| RESEARCH   | JONES  | 2975.00 |
-| SALES      | MARTIN | 1250.00 |
-| SALES      | BLAKE  | 2850.00 |
-| ACCOUNTING | CLARK  | 2450.00 |
-| RESEARCH   | SCOTT  | 3000.00 |
-| ACCOUNTING | KING   | 5000.00 |
-| SALES      | TURNER | 1500.00 |
-| RESEARCH   | ADAMS  | 1100.00 |
-| SALES      | JAMES  |  950.00 |
-| RESEARCH   | FORD   | 3000.00 |
-| ACCOUNTING | MILLER | 1300.00 |
-+------------+--------+---------+
-14 rows in set (0.00 sec)
 
 mysql> select dname, ename, sal from emp,dept where emp.deptno = dept.deptno and deptno=10;
 ERROR 1052 (23000): Column 'deptno' in where clause is ambiguous
