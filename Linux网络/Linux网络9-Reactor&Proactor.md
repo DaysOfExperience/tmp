@@ -2,6 +2,56 @@
 
 [如何深刻理解Reactor和Proactor？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/26943938/answer/1856426252)
 
+[9.3 高性能网络模式：Reactor 和 Proactor | 小林coding](https://xiaolincoding.com/os/8_network_system/reactor.html)
+
+> 什么是 Reator 网络模型?
+>
+> 单 Reactor 单进程/线程、单 Reactor 多线程/进程、多 Reactor 多进程/线程这三种有什么区别?
+>
+> Reator 和 Proactor 有什么区别?
+
+- 演进
+
+> 单进程/单线程, 线程池, 阻塞, 非阻塞, IO多路复用
+>
+> I/O 多路复用技术会用**一个系统调用函数来监听我们所有关心的连接**, 也就说可以**在一个监控线程里面监控很多的连接。**
+
+- 从IO多路复用到Reactor: Reactor是什么? (!!!!!!)
+
+> 大佬们基于面向对象的思想，对 I/O 多路复用作了一层封装
+>
+> 这里的反应指的是「**对事件反应**」，也就是**来了一个事件，Reactor 就有相对应的反应/响应**。 事实上，Reactor 模式也叫 `Dispatcher` 模式，即 **I/O 多路复用监听事件，收到事件后，根据事件类型分配（Dispatch）给某个进程 / 线程**。
+>
+> Reactor 模式主要由 **Reactor** 和**处理资源池**这两个核心部分组成  Reactor **负责监听和分发事件**，事件类型包含连接事件、读写事件 **处理资源池负责处理事件**，如 read -> 业务逻辑 -> send；
+
+- 单 Reactor 单进程 / 线程
+
+这个方案, 很清楚. 有 **Reactor、Acceptor、Handler** 这三个对象...
+
+优缺点...  缺点1 单进程无法充分利用多核CPU的性能 缺点2 !!!
+
+单 Reactor 单进程的方案不适用计算机密集型的场景，只适用于业务处理非常快速的场景。 Redis 是由 C 语言实现的，在 Redis 6.0 版本之前采用的正是「单 Reactor 单进程」的方案
+
+- 单 Reactor 多线程 / 进程
+
+Handler 对象负责数据的接收和发送, Handler 对象通过 read 读取到数据后，会将数据发给子线程里的 Processor 对象进行业务处理, 处理完后，将结果发给主线程中的 Handler 对象，接着由 Handler 通过 send 方法将响应结果发送给 client；  其余的没有变化
+
+优势在于
+
+对比单 Reactor 多进程...
+
+缺陷
+
+- 多 Reactor 多进程 / 线程
+
+?_?
+
+- Proactor
+
+
+
+
+
 # 网络IO模型的演进
 
 1. **<u>对于每个连接，创建一个线程。</u>**
