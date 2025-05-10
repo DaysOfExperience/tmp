@@ -2,17 +2,13 @@
 
 网络字节序是大端模式
 
-**为使网络程序具有可移植性,使同样的C代码在大端和小端计算机上编译后都能正常运行**,可以调用以下库函数做网络字节序和主机字节序的转换。
+**为使网络程序具有可移植性, 使同样的C代码在大端和小端计算机上编译后都能正常运行**, 可以调用以下库函数做网络字节序和主机字节序的转换。
 
 ```C++
 #include <arpa/inet.h>
-
 uint32_t htonl(uint32_t hostlong);//将无符号长整型的主机字节序转换为网络字节序
-
 uint16_t htons(uint16_t hostshort);//将无符号短整型的主机字节序转换为网络字节序
-
 uint32_t ntohl(uint32_t netlong);//将无符号长整型的网络字节序转换为主机字节序
-
 uint16_t ntohs(uint16_t netshort);//将无符号短整型的网络字节序转换为主机字节序
 
 // h代表主机字节序，n代表网络字节序，l代表长整型，s代表短整型
@@ -86,7 +82,7 @@ socket API是一层抽象的网络编程接口（程序通用性，兼容性比�
 
 `int listen(int socket, int backlog)`
 
-- listen()声明sockfd处于监听状态, 并且最多允许有**backlog**个客户端处于连接等待状态, 如果接收到更多的连接请求就忽略, 具体细节同学们课后深入研究;
+- listen()声明sockfd处于监听状态, 并且最多允许有**backlog**个客户端处于连接等待状态, 如果接收到更多的连接请求就忽略
 
 `int accept(int socket, struct sockaddr* address, socklen_t* address_len)`
 
